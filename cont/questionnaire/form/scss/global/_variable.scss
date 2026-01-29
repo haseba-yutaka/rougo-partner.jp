@@ -1,0 +1,98 @@
+// layout
+$container: 1140px;
+$padding-sp: 20px;
+$padding-pc: 51px;
+
+// z-index
+$layer: ("header": 1000,
+  "modal-nav": 990,
+  "button-scroll": 980,
+  "sidebar": 970,
+);
+
+// ブレイクポイント
+$xxs: 320px; // spサイズ
+$xs: 375px; // spサイズ
+$sm: 450px;
+$md: 768px; // tabサイズ
+$lg: 992px;
+$xl: 1200px; // pcサイズ
+$xxl: 1400px;
+$breakpoints: ("xxs": "(max-width: #{$xxs})",
+  "xs": "(max-width: #{$xs})",
+  "sm": "(max-width: #{$sm})",
+  "md": "(max-width: #{$md})",
+  "lg": "(max-width: #{$lg})",
+  "xl": "(max-width: #{$xl})",
+  "xxl": "(max-width: #{$xxl})",
+);
+
+
+/* mixin
+------------------------------------------------------------*/
+$pc-max: 1260px;
+$min-pc: 1024px;
+$tab: 979px;
+$tab-d: 768px;
+$sp: 768px;
+$sp-d: 375px;
+$sp-min: 320px;
+$contents-max:450px;
+
+
+// $pc: 1199px;
+// $tab: 980px;
+// $sp-xl: 767px;
+// $sp: 375px;
+// $sp-min: 320px;
+
+
+@mixin contents-max {
+  @media screen and (max-width: ($contents-max)) {
+    @content;
+  }
+}
+
+@mixin pc-max {
+  @media screen and (max-width: ($pc-max)) {
+    @content;
+  }
+}
+
+
+@mixin min-pc {
+  @media screen and (max-width: ($min-pc)) {
+    @content;
+  }
+}
+
+@mixin tab {
+  @media screen and (max-width: ($tab)) {
+    @content;
+  }
+}
+
+@mixin tab-d {
+  @media screen and (max-width: ($tab-d)) {
+    @content;
+  }
+}
+
+
+@mixin sp {
+  @media screen and (max-width: ($sp)) {
+    @content;
+  }
+}
+
+@mixin sp-d {
+  @media screen and (min-width: ($sp-d)) {
+    @content;
+  }
+}
+
+@mixin sp-min {
+  @media screen and (max-width: ($sp-min)) {
+    @content;
+  }
+}

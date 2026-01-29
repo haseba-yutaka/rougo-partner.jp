@@ -1,0 +1,15 @@
+@use "../global"as *;
+
+/* components
+------------------------------------------------------------*/
+
+.c-ttl{
+    font-size: rem(24);
+    font-weight: var(--f-weight-semibold);
+    color: var(--c-pink);
+    text-align: center;
+    margin-bottom: 40px;
+    @include sp{
+        font-size: rem(20);
+    }
+}

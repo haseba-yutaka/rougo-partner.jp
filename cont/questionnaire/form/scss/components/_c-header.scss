@@ -1,0 +1,26 @@
+@use "../global" as *;
+
+/* header
+------------------------------------------------------------*/
+.header{
+    box-shadow: 6px 6px 6px 6px rgba(var(--c-base-rgb), 0.15);
+    &__inner{
+        padding: 12px 12px;
+    }
+    &__column{
+        display: flex;
+        align-items: center;
+        gap: 16px;
+    }
+    &__logo{
+        width: 240px;
+        @include sp{
+            width: 200px;
+        }
+    }
+    &__ttl{
+        font-size: rem(12);
+        color: var(--c-pink);
+        font-weight: var(--f-weight-medium);
+    }
+}

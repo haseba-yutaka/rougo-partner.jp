@@ -1,0 +1,45 @@
+@use "../global"as *;
+
+/* thanks
+------------------------------------------------------------*/
+.thanks{
+    &__ttl{
+        font-size: rem(24);
+        font-weight: var(--f-weight-semibold);
+        color: var(--c-pink);
+        text-align: center;
+        margin-bottom: 24px;
+        @include sp{
+            font-size: rem(20);
+        }
+    }
+    &__txt{
+        font-size: rem(16);
+        text-align: center;
+        margin-bottom: 1em;
+        @include sp{
+            font-size: rem(14);
+        }
+    }
+    &__btn{
+            border-radius: 100vh;
+            height: 64px;
+            margin:60px auto 0;
+            text-align: center;
+            a{
+                display: inline-block;
+                width: 280px;
+                font-size: rem(24);
+                color: var(--c-white);
+                font-weight: var(--f-weight-medium);
+                line-height: 1;
+                text-decoration: unset;
+                padding: 16px 32px;
+                background-color: var(--c-pink);
+                border-radius: 100vh;
+                @include sp{
+                    font-size: rem(20);
+                }
+            }
+    }
+}

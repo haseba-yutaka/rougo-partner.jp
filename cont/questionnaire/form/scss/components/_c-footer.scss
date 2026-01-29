@@ -1,0 +1,39 @@
+@use "../global"as *;
+
+/* footer
+------------------------------------------------------------*/
+.footer{
+    background-color: var(--c-bg_black);
+    &__inner{
+        padding: 32px 0;
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+    &__column{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        @include sp{
+            flex-direction: column;
+            gap: 16px;
+        }
+    }
+    &__list{
+        display: flex;
+        gap: 16px;
+    }
+    &__item{
+
+    }
+    &__link{
+        font-size: rem(14);
+        color: var(--c-white);
+        &:hover{
+            opacity: .7;
+        }
+    }
+    &__copyright{
+        font-size: rem(12);
+        color: var(--c-white);
+    }
+}
