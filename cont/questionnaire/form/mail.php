@@ -318,36 +318,36 @@ try {
   $mail->isSMTP();
   $mail->Host = 'smtp.larksuite.com';
   $mail->SMTPAuth = true;
-  $mail->Username = 'life@hoken-all.co.jp';
-  $mail->Password = 'Wufc51Pc9BHQe7ni';
+  $mail->Username = 'mama-all@zenb-agency.co.jp';
+  $mail->Password = 'h6wP3Lp2LLBnTndY';
   $mail->SMTPSecure = 'tls';
   $mail->Port = 587;
 
-  // $mail = new PHPMailer(true);
-  // $mail->CharSet = 'UTF-8';
-  // $mail->isSMTP();
-  // $mail->Host = 'sv16171.xserver.jp';
-  // $mail->SMTPAuth = true;
-  // $mail->Username = 'test@takenoko-web.co.jp';
-  // $mail->Password = 'development_mail';
-  // $mail->SMTPSecure = 'tls';
-  // $mail->Port = 587;
-
+  $fromEmail = 'mama-all@zenb-agency.co.jp';
   //共通設定
-  $mail->setFrom('mama-all@zenb-agency.co.jp', 'ママのぜんぶ');
-  $mail->addReplyTo('mama-all@zenb-agency.co.jp', 'ママのぜんぶ企画プレゼントキャンペーン事務局');
-  $mail->Sender = 'life@hoken-all.co.jp';  // Return-Path 相当（PHPMailer）
+  $mail->setFrom($fromEmail, '老後安心パートナー');
+  $mail->Sender = $fromEmail; // Return-Path 相当（PHPMailer）
+
+  $userEmail = (string)($form['email'] ?? '');
+  $userName  = trim((string)($form['last_name'] ?? '') . ' ' . (string)($form['first_name'] ?? ''));
+  if ($userEmail === '' || !filter_var($userEmail, FILTER_VALIDATE_EMAIL)) {
+    throw new Exception('Applicant email is invalid');
+  }
 
   //管理者設定
+  $mail->clearReplyTos();
+  $mail->addReplyTo($userEmail, $userName !== '' ? $userName : ($form['last_name'] ?? ''));
   $mail->addAddress('life@hoken-all.co.jp', '管理者');
-  $mail->Subject = "【開発中】後ほど設定"; 
+  $mail->Subject = '【老後安心パートナー】×【ほけんのぜんぶ】プレゼントキャンペーン応募';
   $mail->Body = $admin_body;
   $mail->send();
 
   //応募者設定
   $mail->clearAddresses();
-  $mail->addAddress($form['email'], $form['last_name'] . ' ' . $form['first_name']);
-  $mail->Subject = '【開発中】後ほど設定';
+  $mail->clearReplyTos();
+  $mail->addReplyTo($fromEmail, '老後安心パートナー企画プレゼントキャンペーン事務局');
+  $mail->addAddress($userEmail, $userName !== '' ? $userName : ($form['last_name'] ?? ''));
+  $mail->Subject = '【老後安心パートナー】×【ほけんのぜんぶ】プレゼントキャンペーンにご応募いただきありがとうございます';
   $mail->Body = $user_body;
   $mail->send();
 
@@ -366,7 +366,8 @@ try {
   // ==============================
 
 } catch (Exception $e) {
-  error_log('メール送信エラー: ' . $mail->ErrorInfo);
+  $err = isset($mail) ? $mail->ErrorInfo : $e->getMessage();
+  error_log('メール送信エラー: ' . $err);
   header('Location: /index.php?error=mail');
   exit;
 }
