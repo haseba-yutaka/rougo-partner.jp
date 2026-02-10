@@ -202,6 +202,12 @@ $address = ($zip && $prefecture && $city && $address_detail) ? "〒{$zip} {$pref
     $error['privacy'] = 'blank';
   }
 
+  // お電話にてご本人様確認ができた方が抽選の対象
+  if (empty($post['lottery']) || $post['lottery'] !== '同意') {
+    $error['lottery'] = 'blank';
+  }
+
+
 
 
 // エラーがあれば index.php に戻す
@@ -424,6 +430,17 @@ $_SESSION['form'] = $post;
             <div class="c-form__group__box__value">
               <p class="confirm__txt"><?= h($post['privacy']."する") ?></p>
               <input type="hidden" name="privacy" value="<?= h($post['privacy']) ?>">
+            </div>
+          </div>
+
+          <!-- お電話にてご本人様確認ができた方が抽選の対象 -->
+          <div class="c-form__group__box">
+            <div class="c-form__group__box__item">
+              <p class="c-form__group__box__title">お電話にてご本人様確認ができた方が抽選の対象</p>
+            </div>
+            <div class="c-form__group__box__value">
+              <p class="confirm__txt"><?= h($post['lottery']."する") ?></p>
+              <input type="hidden" name="lottery" value="<?= h($post['lottery']) ?>">
             </div>
           </div>
 

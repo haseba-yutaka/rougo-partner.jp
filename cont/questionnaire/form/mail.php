@@ -279,7 +279,11 @@ try {
   {$form['last_name']} 様
 
   この度は本キャンペーンにご応募いただきまことにありがとうございます。
-  ご入力いただいた内容は以下でござます。
+  こちらの電話番号よりお電話があります。
+  「0120-990-832」
+  万が一出られなかった場合は折り返しお電話ください。
+
+  ご入力いただいた内容は以下でございます。
 
   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   {$common_body}
@@ -296,6 +300,8 @@ try {
   ※商品の発送は、応募期間終了から2ヶ月以内を予定しております。
   抽選完了後、順次発送いたします。やむを得ない事情により発送が遅延する場合もございますので、あらかじめご了承くださいませ。
 
+  ※お電話にてご本人様確認ができた方のみ、抽選の対象とさせていただきます。
+
   ご不明点などございましたらお気軽にお問合せ下さい。
 
   ご利用上の注意事項　https://zenb-agency.co.jp/mama-campaign/
@@ -310,7 +316,20 @@ try {
 
   以上、宜しくお願いいたします。
   +++++++++++++++++++++++++++++++++++++++++++++++
+
   EOT;
+
+  //PHPMailer設定
+  // $mail = new PHPMailer(true);
+  // $mail->CharSet = 'UTF-8';
+  // $mail->isSMTP();
+  // $mail->Host = 'sv16171.xserver.jp';
+  // $mail->SMTPAuth = true;
+  // $mail->Username = 'test@takenoko-web.co.jp';
+  // $mail->Password = 'development_mail';
+  // $mail->SMTPSecure = 'tls';
+  // $mail->Port = 587;
+
 
   //PHPMailer設定
   $mail = new PHPMailer(true);
@@ -318,35 +337,38 @@ try {
   $mail->isSMTP();
   $mail->Host = 'smtp.larksuite.com';
   $mail->SMTPAuth = true;
-  $mail->Username = 'mama-all@zenb-agency.co.jp';
-  $mail->Password = 'h6wP3Lp2LLBnTndY';
+  $mail->Username = 'life@hoken-all.co.jp';
+  $mail->Password = 'Wufc51Pc9BHQe7ni';
   $mail->SMTPSecure = 'tls';
   $mail->Port = 587;
 
-  $fromEmail = 'mama-all@zenb-agency.co.jp';
-  //共通設定
-  $mail->setFrom($fromEmail, '老後安心パートナー');
-  $mail->Sender = $fromEmail; // Return-Path 相当（PHPMailer）
 
-  $userEmail = (string)($form['email'] ?? '');
-  $userName  = trim((string)($form['last_name'] ?? '') . ' ' . (string)($form['first_name'] ?? ''));
-  if ($userEmail === '' || !filter_var($userEmail, FILTER_VALIDATE_EMAIL)) {
-    throw new Exception('Applicant email is invalid');
-  }
+  //共通設定
+  // $mail->setFrom('test@takenoko-web.co.jp', 'ママのぜんぶ');
+  // $mail->addReplyTo('test@takenoko-web.co.jp', 'ママのぜんぶ企画プレゼントキャンペーン事務局');
+  // $mail->Sender = 'test@takenoko-web.co.jp'; 
+
+  //共通設定
+  $mail->setFrom('mama-all@zenb-agency.co.jp', 'ママのぜんぶ');
+  $mail->addReplyTo('mama-all@zenb-agency.co.jp', 'ママのぜんぶ企画プレゼントキャンペーン事務局');
+  $mail->Sender = 'life@hoken-all.co.jp'; 
+
 
   //管理者設定
-  $mail->clearReplyTos();
-  $mail->addReplyTo($userEmail, $userName !== '' ? $userName : ($form['last_name'] ?? ''));
+  // $mail->addAddress('test@takenoko-web.co.jp', '管理者');
+  // $mail->Subject = "【老後安心パートナー】×【ほけんのぜんぶ】プレゼントキャンペーン"; 
+  // $mail->Body = $admin_body;
+  // $mail->send();
+
+  //管理者設定
   $mail->addAddress('life@hoken-all.co.jp', '管理者');
-  $mail->Subject = '【老後安心パートナー】×【ほけんのぜんぶ】プレゼントキャンペーン応募';
+  $mail->Subject = "【老後安心パートナー】×【ほけんのぜんぶ】プレゼントキャンペーン"; 
   $mail->Body = $admin_body;
   $mail->send();
 
   //応募者設定
   $mail->clearAddresses();
-  $mail->clearReplyTos();
-  $mail->addReplyTo($fromEmail, '老後安心パートナー企画プレゼントキャンペーン事務局');
-  $mail->addAddress($userEmail, $userName !== '' ? $userName : ($form['last_name'] ?? ''));
+  $mail->addAddress($form['email'], $form['last_name'] . ' ' . $form['first_name']);
   $mail->Subject = '【老後安心パートナー】×【ほけんのぜんぶ】プレゼントキャンペーンにご応募いただきありがとうございます';
   $mail->Body = $user_body;
   $mail->send();
@@ -366,8 +388,7 @@ try {
   // ==============================
 
 } catch (Exception $e) {
-  $err = isset($mail) ? $mail->ErrorInfo : $e->getMessage();
-  error_log('メール送信エラー: ' . $err);
+  error_log('メール送信エラー: ' . $mail->ErrorInfo);
   header('Location: /index.php?error=mail');
   exit;
 }

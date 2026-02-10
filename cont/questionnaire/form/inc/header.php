@@ -9,9 +9,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 			<h1 class="header__logo">
 				<img src="./img/logo-rougo-partner.png" alt="老後安心パートナー">
 			</h1>
-			<!-- <h1 class="header__ttl">
-				応募フォーム
-			</h1> -->
 		</div>
 	</div>
 </header>

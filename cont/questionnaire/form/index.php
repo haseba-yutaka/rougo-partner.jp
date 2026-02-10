@@ -654,6 +654,31 @@ $max_year = $current_year - 51; // 最年少：51歳
 
         </div>
 
+        <!-- お電話にてご本人様確認ができた方が抽選の対象 -->
+        <div class="c-form__group__box">
+          <div class="c-form__group__box__item">
+            <p class="c-form__group__box__title -required">お電話にてご本人様確認ができた方が抽選の対象</p>
+          </div>
+          <div class="checkbox__wrap">
+            <div class="checkbox__item <?= !empty($error['lottery']) ? 'input-error' : (!empty($post['lottery']) ? 'input-valid' : '') ?>">
+              <input
+                type="checkbox"
+                name="lottery"
+                id="agree_lottery"
+                value="同意"
+                <?= ($post['lottery'] ?? '') === '同意' ? 'checked' : '' ?>
+              >
+              <label for="agree_lottery">
+                  抽選の対象に同意する
+              </label>
+            </div>
+            <?php if (!empty($error['lottery']) && $error['lottery'] === 'blank'): ?>
+              <p class="c-form__group__box__error">同意が必要になります</p>
+            <?php endif; ?>
+          </div>
+
+        </div>
+
         <div class="c-form__group -submit">
           <div class="c-form__button">
             <button type="submit" name="confirm">確認画面へ進む</button>

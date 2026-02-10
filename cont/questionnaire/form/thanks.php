@@ -27,15 +27,32 @@ unset($_SESSION['referer']);
   <div class="form__inner">
     <div class="form__wrap">
         <h2 class="c-ttl">
-          アンケート回答ありがとうございます
+          キャンペーンご応募ありがとうございます
         </h2>
         <ul class="step">
             <li class="step__item">入力</li>
             <li class="step__item">確認</li>
             <li class="step__item step__item-active">完了</li>
         </ul>
+        <div class="thanks__note">
+          <p class="thanks__note__wrap">
+          まだこのページを<br class="is-sp">閉じないでください！
+          </p>
+        </div>
+        <p class="thanks__txt -large">
+          <span>お電話</span>で<span>ご本人様確認</span>が<br class="is-sp">できた方のみ<br><span>抽選対象</span>となります。
+        </p>
         <p class="thanks__txt">
-          お急ぎの場合やお返事がない場合はお手数ですが下記の連絡までご連絡ください。
+          以下の電話番号からお電話があります。
+        </p>
+        <p class="thanks__txt -large">
+          0120-990-832
+        </p>
+        <p class="thanks__txt">
+          万が一出られなかった場合は折り返しお電話ください。
+        </p>
+        <p class="thanks__txt">
+          お急ぎの場合やお返事がない場合はお手数ですが下記の連絡先までご連絡ください。
         </p>
         <p class="thanks__txt">
           <a href="mailto:mama-all@zenb-agency.co.jp">mama-all@zenb-agency.co.jp</a>

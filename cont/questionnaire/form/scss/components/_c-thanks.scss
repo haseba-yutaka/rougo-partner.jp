@@ -20,6 +20,19 @@
         @include sp{
             font-size: rem(14);
         }
+        &.-large{
+            font-size: rem(28);
+            font-weight: var(--f-weight-semibold);
+            @include sp{
+                font-size: rem(24);
+            }
+            span{
+                color: var(--c-required);
+            }
+        }
+        &.-decoration{
+            margin-bottom: 48px;
+        }
     }
     &__btn{
             border-radius: 100vh;
@@ -41,5 +54,35 @@
                     font-size: rem(20);
                 }
             }
+    }
+    &__note{
+        position: relative;
+        font-size: rem(24);
+        font-weight: var(--f-weight-semibold);
+        text-align: center;
+        padding: 8px 8px;
+        background: repeating-linear-gradient(-45deg, #FFCC00 0 4px, #1a1a1a 4px 8px);
+        margin-bottom: 32px;
+        @include sp{
+            font-size: rem(20);
+            padding: 4px;
+        }
+        &__wrap{
+            padding: 60px 16px 24px;
+            background-color: #FFCC00;
+            &::before{
+                content: "";
+                display: inline-block;
+                background-image: url(../img/icon-warning.svg);
+                background-repeat: no-repeat;
+                background-size: contain;
+                width: 40px;
+                height: 40px;
+                position: absolute;
+                top: 24px;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
     }
 }

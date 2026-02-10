@@ -17,5 +17,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400;500;600;700;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
-<title>応募フォーム | ママのぜんぶ×老後安心パートナー</title>
+<title>応募フォーム | 老後安心パートナー×ほけんのぜんぶ</title>
+<meta name="description" content="ママのぜんぶ企画プレゼントキャンペーン事務局が運営する家計や将来設計に関するアンケートにご回答いただくプレゼントキャンペーンです。">
 </head>
