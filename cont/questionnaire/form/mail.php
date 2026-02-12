@@ -2,7 +2,11 @@
 ob_start();
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
-session_start(); 
+session_start();
+
+$requestId = bin2hex(random_bytes(8));
+require_once(__DIR__ . '/inc/logger.php');
+ 
 
 // ==============================
 // セッションチェック（不正アクセス防止）
@@ -14,7 +18,12 @@ if (
   !hash_equals($_SESSION['send_token'], $_POST['send_token'])
 ) {
   // トークン不一致（=二重送信と見なす）→ メール処理せずthanksに飛ばす
-  header('Location: thanks.php');
+    form_log_write('csrf_failed', [
+    'ip' => $_SERVER['REMOTE_ADDR'] ?? '',
+    'ua' => $_SERVER['HTTP_USER_AGENT'] ?? '',
+    'referer' => $_SERVER['HTTP_REFERER'] ?? '',
+  ], $requestId);
+header('Location: thanks.php');
   exit;
 }
 
@@ -35,6 +44,16 @@ require_once(__DIR__ . '/phpmailer/Exception.php');
 // ==============================
 //入力された情報を$formに保存
 $form = $_SESSION['form'];
+$url_sid = $_SESSION['referer']['url_sid'] ?? '';
+form_log_write('mail_entry', [
+  'ip' => $_SERVER['REMOTE_ADDR'] ?? '',
+  'ua' => $_SERVER['HTTP_USER_AGENT'] ?? '',
+  'referer_url' => $form['referer_url'] ?? '',
+  'url_sid' => $url_sid,
+  'email' => form_mask_email((string)($form['email'] ?? '')) ,
+  'tel' => form_mask_tel((string)($form['tel'] ?? '')) ,
+], $requestId);
+
 $referer = $form['referer_url'] ?? '';
 
 // 流入元
@@ -343,6 +362,9 @@ try {
   $mail->Port = 587;
 
 
+
+  $mail->addCustomHeader('X-Request-ID', $requestId);
+
   //共通設定
   // $mail->setFrom('test@takenoko-web.co.jp', 'ママのぜんぶ');
   // $mail->addReplyTo('test@takenoko-web.co.jp', 'ママのぜんぶ企画プレゼントキャンペーン事務局');
@@ -366,12 +388,20 @@ try {
   $mail->Body = $admin_body;
   $mail->send();
 
+  form_log_write('admin_mail_sent', [
+    'to' => 'life@hoken-all.co.jp',
+  ], $requestId);
+
   //応募者設定
   $mail->clearAddresses();
   $mail->addAddress($form['email'], $form['last_name'] . ' ' . $form['first_name']);
   $mail->Subject = '【老後安心パートナー】×【ほけんのぜんぶ】プレゼントキャンペーンにご応募いただきありがとうございます';
   $mail->Body = $user_body;
   $mail->send();
+
+  form_log_write('applicant_mail_sent', [
+    'to' => form_mask_email((string)($form['email'] ?? '')) ,
+  ], $requestId);
 
   // ==============================
   // 正常処理後・リダイレクト
@@ -388,7 +418,11 @@ try {
   // ==============================
 
 } catch (Exception $e) {
-  error_log('メール送信エラー: ' . $mail->ErrorInfo);
+  $err = isset($mail) ? $mail->ErrorInfo : $e->getMessage();
+  error_log('メール送信エラー: ' . $err);
+  form_log_write('mail_failed', [
+    'error' => $err,
+  ], $requestId);
   header('Location: /index.php?error=mail');
   exit;
 }
