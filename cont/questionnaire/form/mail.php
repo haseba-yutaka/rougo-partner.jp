@@ -356,8 +356,8 @@ try {
   $mail->isSMTP();
   $mail->Host = 'smtp.larksuite.com';
   $mail->SMTPAuth = true;
-  $mail->Username = 'life@hoken-all.co.jp';
-  $mail->Password = 'Wufc51Pc9BHQe7ni';
+  $mail->Username = 'mama-all@zenb-agency.co.jp';
+  $mail->Password = 'h6wP3Lp2LLBnTndY';
   $mail->SMTPSecure = 'tls';
   $mail->Port = 587;
 
@@ -373,7 +373,7 @@ try {
   //共通設定
   $mail->setFrom('mama-all@zenb-agency.co.jp', 'ママのぜんぶ');
   $mail->addReplyTo('mama-all@zenb-agency.co.jp', 'ママのぜんぶ企画プレゼントキャンペーン事務局');
-  $mail->Sender = 'life@hoken-all.co.jp'; 
+  $mail->Sender = 'mama-all@zenb-agency.co.jp'; 
 
 
   //管理者設定
