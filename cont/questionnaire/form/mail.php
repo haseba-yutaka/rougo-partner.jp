@@ -383,13 +383,13 @@ try {
   // $mail->send();
 
   //管理者設定
-  $mail->addAddress('life@hoken-all.co.jp', '管理者');
+  $mail->addAddress('contact@hoken-all.co.jp', '管理者');
   $mail->Subject = "【老後安心パートナー】×【ほけんのぜんぶ】プレゼントキャンペーン"; 
   $mail->Body = $admin_body;
   $mail->send();
 
   form_log_write('admin_mail_sent', [
-    'to' => 'life@hoken-all.co.jp',
+    'to' => 'contact@hoken-all.co.jp',
   ], $requestId);
 
   //応募者設定
