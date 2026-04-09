@@ -85,31 +85,31 @@ $max_year = $current_year - 51; // 最年少：51歳
               </label>
             </div>
             <div class="radio__wrap">
-              <input type="radio" id="present2" value="オオズワイガニ1.5kg 北海道産 ボイル" name="present"
-                <?= (isset($post['present']) && $post['present'] === 'オオズワイガニ1.5kg 北海道産 ボイル') ? 'checked' : ''; ?>>
-              <label for="present2" class="c-form__group__box__radio <?= !empty($error['present']) ? 'input-error' : (!empty($post['present']) ? 'input-valid' : '') ?>">
-                オオズワイガニ1.5kg 北海道産 ボイル
-              </label>
-            </div>
-            <div class="radio__wrap">
-              <input type="radio" id="present3" value="UNIQLO eGift Card 10,000円" name="present"
+              <input type="radio" id="present2" value="UNIQLO eGift Card 10,000円" name="present"
                 <?= (isset($post['present']) && $post['present'] === 'UNIQLO eGift Card 10,000円') ? 'checked' : ''; ?>>
-              <label for="present3" class="c-form__group__box__radio <?= !empty($error['present']) ? 'input-error' : (!empty($post['present']) ? 'input-valid' : '') ?>">
+              <label for="present2" class="c-form__group__box__radio <?= !empty($error['present']) ? 'input-error' : (!empty($post['present']) ? 'input-valid' : '') ?>">
                 UNIQLO eGift Card 10,000円
               </label>
             </div>
             <div class="radio__wrap">
-              <input type="radio" id="present4" value="Amazonギフトカード 5,000円分" name="present"
-                <?= (isset($post['present']) && $post['present'] === 'Amazonギフトカード 5,000円分') ? 'checked' : ''; ?>>
-              <label for="present4" class="c-form__group__box__radio <?= !empty($error['present']) ? 'input-error' : (!empty($post['present']) ? 'input-valid' : '') ?>">
-                Amazonギフトカード 5,000円分
+              <input type="radio" id="present3" value="サイベックス リベル（アーモンドベージュ）" name="present"
+                <?= (isset($post['present']) && $post['present'] === 'サイベックス リベル（アーモンドベージュ）') ? 'checked' : ''; ?>>
+              <label for="present3" class="c-form__group__box__radio <?= !empty($error['present']) ? 'input-error' : (!empty($post['present']) ? 'input-valid' : '') ?>">
+                サイベックス リベル（アーモンドベージュ）
               </label>
             </div>
             <div class="radio__wrap">
-              <input type="radio" id="present5" value="スシローお食事券 1,000円分×5枚" name="present"
-                <?= (isset($post['present']) && $post['present'] === 'スシローお食事券 1,000円分×5枚') ? 'checked' : ''; ?>>
+              <input type="radio" id="present4" value="Roomba 105 Combo ロボット ブラック" name="present"
+                <?= (isset($post['present']) && $post['present'] === 'Roomba 105 Combo ロボット ブラック') ? 'checked' : ''; ?>>
+              <label for="present4" class="c-form__group__box__radio <?= !empty($error['present']) ? 'input-error' : (!empty($post['present']) ? 'input-valid' : '') ?>">
+                Roomba 105 Combo ロボット ブラック
+              </label>
+            </div>
+            <div class="radio__wrap">
+              <input type="radio" id="present5" value="厳選 魚沼産コシヒカリ" name="present"
+                <?= (isset($post['present']) && $post['present'] === '厳選 魚沼産コシヒカリ') ? 'checked' : ''; ?>>
               <label for="present5" class="c-form__group__box__radio <?= !empty($error['present']) ? 'input-error' : (!empty($post['present']) ? 'input-valid' : '') ?>">
-                スシローお食事券 1,000円分×5枚
+                厳選 魚沼産コシヒカリ
               </label>
             </div>
             
