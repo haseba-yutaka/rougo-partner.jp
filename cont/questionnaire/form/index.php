@@ -92,23 +92,16 @@ $max_year = $current_year - 51; // 最年少：51歳
               </label>
             </div>
             <div class="radio__wrap">
-              <input type="radio" id="present3" value="サイベックス リベル（アーモンドベージュ）" name="present"
-                <?= (isset($post['present']) && $post['present'] === 'サイベックス リベル（アーモンドベージュ）') ? 'checked' : ''; ?>>
-              <label for="present3" class="c-form__group__box__radio <?= !empty($error['present']) ? 'input-error' : (!empty($post['present']) ? 'input-valid' : '') ?>">
-                サイベックス リベル（アーモンドベージュ）
-              </label>
-            </div>
-            <div class="radio__wrap">
-              <input type="radio" id="present4" value="Roomba 105 Combo ロボット ブラック" name="present"
+              <input type="radio" id="present3" value="Roomba 105 Combo ロボット ブラック" name="present"
                 <?= (isset($post['present']) && $post['present'] === 'Roomba 105 Combo ロボット ブラック') ? 'checked' : ''; ?>>
-              <label for="present4" class="c-form__group__box__radio <?= !empty($error['present']) ? 'input-error' : (!empty($post['present']) ? 'input-valid' : '') ?>">
+              <label for="present3" class="c-form__group__box__radio <?= !empty($error['present']) ? 'input-error' : (!empty($post['present']) ? 'input-valid' : '') ?>">
                 Roomba 105 Combo ロボット ブラック
               </label>
             </div>
             <div class="radio__wrap">
-              <input type="radio" id="present5" value="厳選 魚沼産コシヒカリ" name="present"
+              <input type="radio" id="present4" value="厳選 魚沼産コシヒカリ" name="present"
                 <?= (isset($post['present']) && $post['present'] === '厳選 魚沼産コシヒカリ') ? 'checked' : ''; ?>>
-              <label for="present5" class="c-form__group__box__radio <?= !empty($error['present']) ? 'input-error' : (!empty($post['present']) ? 'input-valid' : '') ?>">
+              <label for="present4" class="c-form__group__box__radio <?= !empty($error['present']) ? 'input-error' : (!empty($post['present']) ? 'input-valid' : '') ?>">
                 厳選 魚沼産コシヒカリ
               </label>
             </div>
