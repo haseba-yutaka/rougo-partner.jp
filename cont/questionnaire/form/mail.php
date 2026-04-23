@@ -171,7 +171,7 @@ $hokandata['user_useragent'] = $_SERVER['HTTP_USER_AGENT'];
 $hokandata['user_lpurl'] = (empty($_SERVER['HTTPS']) ? 'http://' : 'https://') . $_SERVER['HTTP_HOST'] . str_replace(['form/', 'confirm/', 'form.php', 'mail.php'], '', $_SERVER['REQUEST_URI']);
 
 //流入経路名
-$hokandata['route'] = '【購入(リスト)】老後安心パートナーオーガニック_アンケートFM';
+$hokandata['route'] = '【購入(TM)】老後安心パートナーオーガニック_アンケートFM';
 
 //ご希望のプレゼント
 $hokandata['present'] = $form['present'] ?? '';
